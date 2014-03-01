@@ -7,15 +7,20 @@ html{
 
 body{
   margin: 50 auto;
-  width: 30%;
+  width: 35%;
 
 }
-h1{
+#directions{
+  text-align: center;
+}
+h1, h2{
   text-align: center;
   font-family: arial;
 }
+
 table{
- font-size: 1.2em;
+   font-size: 1.2em;
+   text-align: center;
 }
 td, th{
   padding: 0 10px;

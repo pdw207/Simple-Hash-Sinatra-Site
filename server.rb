@@ -1,11 +1,7 @@
 require 'pry'
 require 'sinatra'
 
-
-
-get '/leaderboard' do
-
-  data = [
+data = [
   {
     home_team: "Patriots",
     away_team: "Broncos",
@@ -31,6 +27,10 @@ get '/leaderboard' do
     away_score: 21
   }
 ]
+
+
+get '/leaderboard' do
+
 
   # Initatilize new stats instance
   stats = {}
@@ -79,12 +79,37 @@ get '/leaderboard' do
 end
 
 get '/teams/:team' do
-  games = []
-  data.each do |game|
-    if game[:home_team] == params[:team] || game[:away_team] == params[:team]
-    @games << game
+  @games = []
+  @team = {win: 0, loss:0}
+
+  def find_winner game
+    if game[:home_score] > game[:away_score]
+      game[:home_team]
+    else
+      game[:away_team]
+    end
   end
 
+  data.each do |game|
+    home_play = game[:home_team] == params[:team]
+    away_play = game[:away_team] == params[:team]
+
+    if away_play || home_play
+
+      # If winner is current team add win otherwise loss
+      if find_winner(game) == params[:team]
+        puts "won 1"
+        @team[:win] += 1
+      else
+        puts "lost 1"
+        @team[:loss] +=1
+      end
+      @games << game
+
+    end
+
+
+  end
  erb :team
 end
 

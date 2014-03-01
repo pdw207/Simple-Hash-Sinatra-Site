@@ -6,8 +6,31 @@
 <body>
   <header>
       <h1><%= params[:team] %></h1>
-      <%= @games %>
+      <h2>Wins: <%= @team[:win] %> & Losses: <%= @team[:loss] %></h2>
   </header>
+      <table>
+          <tr>
+            <th>Home</th>
+            <th>Score </th>
+            <th>Away</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @games.each do |game| %>
+          <tr>
+            <td><%= game[:home_team] %></td>
+            <td><%= game[:home_score] %></td>
+            <td><%= game[:away_team] %></td>
+            <td><%= game[:away_score] %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+<footer>
+  <h4><a href="/leaderboard">Go Back</a></h4>
+</footer>
 
 </body>
 </html>
