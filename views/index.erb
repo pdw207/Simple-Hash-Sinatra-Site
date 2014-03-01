@@ -1,1 +1,35 @@
-TEST
+<html>
+<head>
+  <title>NFL Game Time!</title>
+  <link rel=stylesheet href="/style.css">
+</head>
+<body>
+  <header>
+      <h1>NFL 2014 Season</h1>
+  </header>
+<table>
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Games</th>
+      <th>Wins</th>
+      <th>Loses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stats.each do |team| %>
+    <tr>
+      <td><a href="/teams/<%=team.first%>"><%= team.first %></a></td>
+      <td><%= team.last[:total] %></td>
+      <td><%= team.last[:win] %></td>
+      <td><%= team.last[:loss] %></td>
+    </tr>
+    <% end %>
+
+
+  </tbody>
+</table>
+    <p>Click on the team name to see Team Stats</p>
+
+</body>
+</html>
